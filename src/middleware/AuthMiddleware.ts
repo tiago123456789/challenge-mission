@@ -8,7 +8,7 @@ export default {
     hasPermission: async (request: Request, response: Response, next: NextFunction) => {
         try {
             const data = request.body;
-            await auth.hasPermission({ token: data.token });
+            // await auth.hasPermission({ token: data.token });
             next();
         } catch (error) {
             next(error);
