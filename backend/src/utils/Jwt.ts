@@ -23,7 +23,7 @@ export default class Jwt implements JwtInterface {
     get(): string {
         return jwtToken.sign({
             ...this.datas,
-            exp: 900
+            exp:  Math.floor(Date.now() / 1000) + (15 * 60)
         }, process.env.JWT_SECRET)
     }
 

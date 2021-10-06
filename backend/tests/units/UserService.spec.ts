@@ -1,19 +1,17 @@
-import "../../../src/config/LoaderEnvironmentVariable";
-import UserService from "../../../src/service/UserService";
-import logger from "../../../src/config/Logger";
-import UserRepository from "../../../src/repositories/UserRepository";
-import EncrypterFactory from "../../../src/factories/EncrypterFactory";
-import BusinessLogicException from "../../../src/exceptions/BusinessLogicException";
-import InvalidAuthenticationException from "../../../src/exceptions/InvalidAuthenticationException";
+import "../../src/config/LoaderEnvironmentVariable";
+import UserService from "../../src/service/UserService";
+import logger from "../../src/config/Logger";
+import UserRepository from "../../src/repositories/UserRepository";
+import EncrypterFactory from "../../src/factories/EncrypterFactory";
+import BusinessLogicException from "../../src/exceptions/BusinessLogicException";
+import InvalidAuthenticationException from "../../src/exceptions/InvalidAuthenticationException";
 
-import JwtFactory from "../../../src/factories/JwtFactory";
-import Encrypter from "../../../src/utils/Encrypter";
-import Jwt from "../../../src/utils/Jwt"
-import bcrypt from "bcrypt"
+import JwtFactory from "../../src/factories/JwtFactory";
+import Encrypter from "../../src/utils/Encrypter";
 
-jest.mock("../../../src/repositories/UserRepository");
-jest.mock("../../../src/utils/Encrypter");
-jest.mock("../../../src/utils/Jwt");
+jest.mock("../../src/repositories/UserRepository");
+jest.mock("../../src/utils/Encrypter");
+jest.mock("../../src/utils/Jwt");
 
 
 

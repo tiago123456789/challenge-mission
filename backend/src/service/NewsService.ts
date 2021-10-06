@@ -20,4 +20,9 @@ export default class NewsService {
         this.logger.info(`Creating news`)
         return this.repository.save(register);
     }
+
+    findAll() {
+        this.logger.info(`Listing the news`)
+        return this.repository.findAll();
+    }
 }
