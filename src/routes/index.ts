@@ -1,15 +1,17 @@
 import { Express } from "express";
 import handlerException from "../middleware/HandlerExceptionMiddleware";
 import UserEndpointFactory from "../factories/UserEndpointFactory";
-import authMiddleware from "../middleware/AuthMiddleware";
+import NewsEndpointFactory from "../factories/NewsEndpointFactory";
 
 const userEnpoint = new UserEndpointFactory().make({});
-
+const newsEndpoint = new NewsEndpointFactory().make({})
 export default (app: Express) => {
     
     app.post("/auth/register", userEnpoint.register)
     app.post("/auth/login", userEnpoint.authenticate)
     
+    app.post("/news", newsEndpoint.save)
+
     // Handler exceptions in aplication.
     app.use(handlerException);
     
