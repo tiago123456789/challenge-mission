@@ -5,6 +5,8 @@ export default {
 
     ROUTES: {
         REGISTER : "/auth/register",
-        LIST_NEWS: "/news"
+        LIST_NEWS: "/news",
+        REGISTER_NEWS: "/news/create"
+
     }
 }
