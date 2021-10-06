@@ -13,13 +13,19 @@ class UserEndpoint extends Endpoint {
 
     getRulesValidation(): { [key: string]: any; } {
         return Joi.object({
-            username: Joi.string().email().required(),
+            username: Joi.string().email()
+                .message("Email informated invalid.")
+                .required(),
             password: Joi.string().min(10)
                 .regex(/([a-z]){1,}/)
+                    .message("Password must have 1 uppercase, 1 lowercase, 1 number, 1 special digit and minimum 10 digits")
                 .regex(/([%$@#*&]){1,}/)
+                    .message("Password must have 1 uppercase, 1 lowercase, 1 number, 1 special digit and minimum 10 digits")
                 .regex(/([A-Z]){1,}/)
+                    .message("Password must have 1 uppercase, 1 lowercase, 1 number, 1 special digit and minimum 10 digits")
                 .regex(/([0-9]){1}/)
-                .required(),
+                    .message("Password must have 1 uppercase, 1 lowercase, 1 number, 1 special digit and minimum 10 digits")
+                .required()
         });
     }
 

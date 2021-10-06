@@ -6,10 +6,14 @@ import Register from "./pages/Register";
 import ListNews from "./pages/ListNews"
 import NewNews from "./pages/NewNews"
 import Header from "./components/Header";
+import { ToastContainer } from 'react-toastify';
+import '../node_modules/react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   return (
     <>
+    <ToastContainer/>
       <Header />
       <Container >
         <Router> 
