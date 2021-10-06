@@ -1,8 +1,8 @@
-import * as bcrypt from "bcryptjs";
+import * as bcrypt from "bcrypt";
 
 interface EncrypterInterface {
 
-    getHash(value: string): Promise<string>;
+    getHash(value: string): string;
 
     compare(value: string, hash: string): Promise<boolean>;
 }
@@ -11,12 +11,12 @@ class Encrypter implements EncrypterInterface {
 
     readonly SALT_LENGTH: number = 10;
 
-    getHash(value: string): Promise<string> {
-        return bcrypt.hash(value, this.SALT_LENGTH);
+    getHash(value: string): string {
+        return bcrypt.hashSync(value, this.SALT_LENGTH);
     } 
 
     compare(value: string, hash: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        return bcrypt.compare(value, hash);  
     }
 
 }

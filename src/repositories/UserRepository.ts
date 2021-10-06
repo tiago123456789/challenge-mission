@@ -10,7 +10,7 @@ class UserRepository implements UserRepositoryInterface {
     }
 
     async findByEmail(email: string): Promise<any> {
-        return UserCollection.find({ username: email })
+        return UserCollection.findOne({ username: email })
     }
 
 }

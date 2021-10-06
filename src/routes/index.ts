@@ -8,7 +8,7 @@ const userEnpoint = new UserEndpointFactory().make({});
 export default (app: Express) => {
     
     app.post("/auth/register", userEnpoint.register)
-    // app.get("/auth/login", (request, response) => response.json({ message: "auth/login"}))
+    app.post("/auth/login", userEnpoint.authenticate)
     
     // Handler exceptions in aplication.
     app.use(handlerException);
