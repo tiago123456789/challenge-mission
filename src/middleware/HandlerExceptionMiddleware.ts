@@ -22,6 +22,12 @@ export default (error: Error, request: Request, response: Response, next: NextFu
                 statusCode: 403,
                 message: error.message
             });
+        case "InvalidAuthenticationException":
+            logger.info(error.message);
+            return response.status(401).json({
+                statusCode: 401,
+                message: error.message
+            });
         default:
             logger.error(error.message);
             return response.status(500).json({

@@ -8,6 +8,7 @@ class UserEndpoint extends Endpoint {
     constructor(private readonly service: UserService) {
         super();
         this.register = this.register.bind(this);
+        this.authenticate = this.authenticate.bind(this);
     }
 
     getRulesValidation(): { [key: string]: any; } {
@@ -28,6 +29,17 @@ class UserEndpoint extends Endpoint {
             this.isValidDatas(register);
             await this.service.register(register);
             return response.sendStatus(201)
+        } catch(error) {
+            next(error);
+        }
+    }
+
+    public async authenticate(request: Request, response: Response, next: NextFunction) {
+        try {
+            const register = request.body;
+            this.isValidDatas(register);
+            const accessToken = await this.service.authenticate(register);
+            return response.json({ accessToken })
         } catch(error) {
             next(error);
         }

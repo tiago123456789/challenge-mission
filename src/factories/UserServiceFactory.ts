@@ -3,6 +3,7 @@ import FactoryInterface from "./FactoryInterface";
 import UserRepositoryFactory from "./UserRepositoryFactory";
 import logger from "../config/Logger";
 import EncrypterFactory from "./EncrypterFactory";
+import JwtFactory from "./JwtFactory";
 
 class UserServiceFactory implements FactoryInterface<UserService> {
 
@@ -11,7 +12,8 @@ class UserServiceFactory implements FactoryInterface<UserService> {
         return new UserService(
             new EncrypterFactory().make({}),
             repository,
-            logger
+            logger,
+            new JwtFactory().make({})
         );
     }
 
