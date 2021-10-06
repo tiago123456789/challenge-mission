@@ -22,6 +22,7 @@ export default class NewsService {
     }
 
     findAll() {
+        this.logger.info(`Listing the news`)
         return this.repository.findAll();
     }
 }

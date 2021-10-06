@@ -17,7 +17,7 @@ const logger = winston.createLogger({
 });
 
 const isDevelopment = process.env.ENV == "dev";
-if (!isDevelopment) {
+if (isDevelopment) {
   logger.add(new winston.transports.Console({ level: 'debug' }));
 }
 
