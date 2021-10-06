@@ -9,6 +9,16 @@ const create = (credential) => {
     })
 }
 
+
+const login = (credential) => {
+    return axios.post(`${process.env.REACT_APP_URL_BASE}/auth/login`, credential).then(response => {
+        if (response.data) {
+            return response.data;
+        }
+        return response
+    })
+}
+
 export default {
-    create
+    create, login
 }
