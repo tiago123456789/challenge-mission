@@ -11,6 +11,8 @@ export default (app: Express) => {
     app.post("/auth/login", userEnpoint.authenticate)
     
     app.post("/news", newsEndpoint.save)
+    app.get("/news", newsEndpoint.findAll)
+
 
     // Handler exceptions in aplication.
     app.use(handlerException);

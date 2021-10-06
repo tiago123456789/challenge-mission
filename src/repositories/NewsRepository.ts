@@ -13,5 +13,10 @@ export default class NewsRepository implements NewsRepositoryInterface {
         // @ts-ignore 
         return NewsCollection.findOne({ title: title })
     }
+
+    findAll(): Promise<any[]> {
+        // @ts-ignore 
+        return NewsCollection.find({ })
+    }
     
 }
