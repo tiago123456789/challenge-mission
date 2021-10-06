@@ -60,4 +60,23 @@ describe("Unit tests class NewsService", () => {
         expect(newsRepositoryMocked.save.call.length).toBe(1);
     });
 
+    it("Should return 3 news when try find all", async () => {
+        const NewsRepositoryMocked = <jest.Mock<NewsRepository>>NewsRepository;
+        const newsRepositoryMocked = <jest.Mocked<NewsRepository>>new NewsRepositoryMocked();
+        const registerFake = {
+            "title": "testando testando",
+            "description": "testando testando o teste"
+        };
+
+        newsRepositoryMocked.findAll.mockResolvedValue([
+            registerFake, registerFake, registerFake
+        ])
+        const newsService = new NewsService(
+            newsRepositoryMocked,
+            logger,
+        );
+        const registerReturned = await newsService.findAll();
+        expect(registerReturned.length).toBe(3);
+    });
+
 });

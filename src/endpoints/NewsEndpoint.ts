@@ -8,6 +8,7 @@ export default class NewsEndpoint extends Endpoint {
     constructor(private readonly service: NewsService) {
         super();
         this.save = this.save.bind(this);
+        this.findAll = this.findAll.bind(this);
     }
 
     getRulesValidation(): { [key: string]: any; } {
@@ -23,6 +24,15 @@ export default class NewsEndpoint extends Endpoint {
             this.isValidDatas(register);
             await this.service.save(register);
             return response.sendStatus(201)
+        } catch(error) {
+            next(error);
+        }
+    }
+
+    public async findAll(request: Request, response: Response, next: NextFunction) {
+        try {
+            const news = await this.service.findAll();
+            return response.json(news);
         } catch(error) {
             next(error);
         }
