@@ -1,5 +1,5 @@
-Requisitos:
-============
+Tecnologias utilizadas:
+========================    
 
 - Backend
     - Node.js versão 14.16.1
