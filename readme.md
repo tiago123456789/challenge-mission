@@ -10,6 +10,8 @@ Tecnologias utilizadas:
 - Frontend
     - React.js
     - axios
+    - formik(validação formulário)
+    - Hooks
 
 
 Backend instruções para rodar projeto em ambiente de desenvolvimento:
