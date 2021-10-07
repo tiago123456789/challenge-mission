@@ -14,10 +14,11 @@ export default () => {
             password: '',
         },
         validationSchema: RegisterUserValidation,
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             try {
                 await userService.create(values);
                 notification.success("Conta criado com sucesso!")
+                resetForm();
             } catch(error) {
                 notification.warning(HandlerHttpError(error).join("\n"))
             }

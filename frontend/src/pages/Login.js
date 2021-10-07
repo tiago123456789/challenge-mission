@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
@@ -8,8 +8,10 @@ import notification from "../utils/Notification"
 import userService from "../services/UserService"
 import HandlerHttpError from '../utils/HandlerHttpError';
 import App from '../constants/App';
+import { useAuth } from '../Context/UserAuth';
 
 export default (props) => {
+    const { setUserAuthenticated } = useAuth()
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -20,6 +22,7 @@ export default (props) => {
             try {
                 const data = await userService.login(values);
                 localStorage.setItem(App.LOCALSTORAGE.ACCESS_TOKEN, data.accessToken)
+                setUserAuthenticated(data.accessToken);
                 notification.success("Login efetuado com sucesso!")
                 props.history.push(App.ROUTES.LIST_NEWS)
             } catch(error) {
@@ -27,6 +30,10 @@ export default (props) => {
             }
         },
     });
+
+    useEffect(() => {
+        setUserAuthenticated(null)
+    }, [])
 
     return (
         <>

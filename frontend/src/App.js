@@ -6,26 +6,30 @@ import Register from "./pages/Register";
 import ListNews from "./pages/ListNews"
 import NewNews from "./pages/NewNews"
 import Header from "./components/Header";
+import PrivateRoute from "./components/PrivateRoute"
 import { ToastContainer } from 'react-toastify';
 import '../node_modules/react-toastify/dist/ReactToastify.css';
+import { AuthProvider } from "./Context/UserAuth";
 
 
 function App() {
   return (
     <>
-    <ToastContainer/>
-      <Header />
-      <Container >
-        <Router> 
-          <Switch>
-            <Route exact path="/auth/login" component={Login} />
-            <Route exact path="/auth/register" component={Register} />
-            <Route exact path="/news/" component={ListNews} />
-            <Route exact path="/news/create" component={NewNews} />
-            <Redirect to="/auth/login" />
-          </Switch>
-        </Router>
-      </Container>
+      <AuthProvider>
+        <ToastContainer />
+        <Header />
+        <Container >
+          <Router>
+            <Switch>
+              <Route exact path="/auth/login" component={Login} />
+              <Route exact path="/auth/register" component={Register} />
+              <PrivateRoute exact path="/news/" component={ListNews} />
+              <Route exact path="/news/create" component={NewNews} />
+              <Redirect to="/auth/login" />
+            </Switch>
+          </Router>
+        </Container>
+      </AuthProvider>
     </>
   );
 }
