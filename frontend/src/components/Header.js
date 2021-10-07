@@ -1,10 +1,28 @@
 import React from "react"
-import { Navbar, NavbarBrand } from "reactstrap"
+import { Button, Navbar, NavbarBrand, NavbarText } from "reactstrap"
+import { useAuth } from "../Context/UserAuth"
+import authService from "../services/AuthService"
 
-export default () => (
+export default () => {
+  const { isAuthenticated, logout } = useAuth()
+
+  const userLogout = () => {
+    logout()
+    authService.logout()
+  }
+
+  return (
     <div>
       <Navbar color="dark" light expand="md">
         <NavbarBrand href="/" className="text-white">&nbsp;Challenge Mission</NavbarBrand>
+        { isAuthenticated() &&
+          (
+            <div className="col-md-10">
+              <Button onClick={() => userLogout()} style={{ float: "right"}}>Sair</Button>
+            </div>
+          )
+        }
       </Navbar>
     </div>
-)
+  )
+}
