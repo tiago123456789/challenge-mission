@@ -25,9 +25,9 @@ spec:
           - name: PORT
             value: "3000"
           - name: DB_URL
-            value: "mongodb://mongo-service:27017/development"
+            value: <VALUE_DB_URL>
           - name: JWT_SECRET
-            value: "aasdfjasdjklasdfd557847545454451"
+            value: <VALUE_JWT_SECRET>
       # imagePullSecrets:
       # - name: registry-challenge-missions
       
