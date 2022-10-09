@@ -14,7 +14,7 @@ export default () => {
   return (
     <div>
       <Navbar color="dark" light expand="md">
-        <NavbarBrand href="/" className="text-white">&nbsp;Challenge Mission</NavbarBrand>
+        <NavbarBrand href="/" className="text-white">&nbsp;Challenge Mission 2</NavbarBrand>
         { isAuthenticated() &&
           (
             <div className="col-md-10">
