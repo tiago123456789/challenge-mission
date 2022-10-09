@@ -7,6 +7,22 @@ services:
     ports:
       - 27017:27017
     container_name: mongodb
+    networks:
+      - challenge
+
+  app:
+    env_file: ./.env
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.prod
+    ports:
+      - 3000:3000
+    container_name: challenge_mission_backend
+    networks:
+      - challenge
   
+networks:
+  challenge:
+    driver: bridge
   
 

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: registry.digitalocean.com/challenge-missions/challenge-mission-backend:latest
+          ports:
+          - containerPort: 3000
+          imagePullPolicy: Always
+          env:
+          - name: ENV
+            value: "dev"
+          - name: PORT
+            value: "3000"
+          - name: DB_URL
+            value: "mongodb://mongo-service:27017/development"
+          - name: JWT_SECRET
+            value: "aasdfjasdjklasdfd557847545454451"
+      # imagePullSecrets:
+      # - name: registry-challenge-missions
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
