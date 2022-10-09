@@ -19,6 +19,9 @@ jobs:
       - name: Build backend container image 
         run: cd backend && docker build -f Dockerfile.prod -t registry.digitalocean.com/challenge-missions/challenge-mission-backend:$(echo $GITHUB_SHA | head -c7) .
 
+      - name: Create file .env within directory frontend
+        run: echo 'REACT_APP_URL_BASE="https://api.agendareasy.com.br"' > ./frontend/.env
+
       - name: Build frontend container image 
         run: cd frontend && docker build -t registry.digitalocean.com/challenge-missions/challenge-mission-frontend:$(echo $GITHUB_SHA | head -c7) .
 
