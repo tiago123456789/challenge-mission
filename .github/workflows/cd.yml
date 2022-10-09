@@ -41,10 +41,10 @@ jobs:
         run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|registry.digitalocean.com/challenge-missions/challenge-mission-frontend:'${TAG}'|' $GITHUB_WORKSPACE/k8s/frontend.depl.yml
 
       - name: Change envs backend deployment file
-        run: sed -i 's|<VALUE_DB_URL>|${{ secrets.VALUE_DB_URL }}'|' $GITHUB_WORKSPACE/k8s/backend.depl.yml
+        run: sed -i 's|<VALUE_DB_URL>|'${{ secrets.VALUE_DB_URL }}'|' $GITHUB_WORKSPACE/k8s/backend.depl.yml
 
       - name: Change envs backend deployment file part 2
-        run: sed -i 's|<VALUE_JWT_SECRET>|${{ secrets.VALUE_JWT_SECRET }}'|' $GITHUB_WORKSPACE/k8s/backend.depl.yml
+        run: sed -i 's|<VALUE_JWT_SECRET>|'${{ secrets.VALUE_JWT_SECRET }}'|' $GITHUB_WORKSPACE/k8s/backend.depl.yml
 
       - name: Save DigitalOcean kubeconfig with short-lived credentials
         run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.CLUSTER_NAME }}
