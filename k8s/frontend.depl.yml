@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: registry.digitalocean.com/challenge-missions/challenge-mission-frontend:latest
+          image: <IMAGE>
           imagePullPolicy: Always
           ports:
           - containerPort: 80

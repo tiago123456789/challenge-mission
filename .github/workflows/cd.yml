@@ -31,14 +31,14 @@ jobs:
       - name: Push frontend image to DigitalOcean Container Registry
         run: docker push registry.digitalocean.com/challenge-missions/challenge-mission-frontend:$(echo $GITHUB_SHA | head -c7)
 
-      # - name: Update deployment file
-      #   run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|registry.digitalocean.com/app-node-simple/simple-app:'${TAG}'|' $GITHUB_WORKSPACE/k8s/deployment.yml
+      - name: Update backend deployment file
+        run: cd k8s && TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|registry.digitalocean.com/challenge-missions/challenge-mission-backend:'${TAG}'|' $GITHUB_WORKSPACE/backend.depl.yml
 
-      # - name: Save DigitalOcean kubeconfig with short-lived credentials
-      #   run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.CLUSTER_NAME }}
+      - name: Update frontend deployment file
+        run: cd k8s && TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|registry.digitalocean.com/challenge-missions/challenge-mission-frontend:'${TAG}'|' $GITHUB_WORKSPACE/frontend.depl.yml
 
-      # - name: Deploy to DigitalOcean Kubernetes
-      #   run: kubectl apply -f $GITHUB_WORKSPACE/k8s/deployment.yml
+      - name: Save DigitalOcean kubeconfig with short-lived credentials
+        run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.CLUSTER_NAME }}
 
-      # - name: Verify deployment
-      #   run: kubectl rollout status deployment/app-node-deployment
+      - name: Deploy to DigitalOcean Kubernetes
+        run: kubectl apply -f $GITHUB_WORKSPACE/k8s/
